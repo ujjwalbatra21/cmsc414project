@@ -16,19 +16,22 @@ while 1:
     client.send(operations.encode())
     
     ops = operations.split()
-    ops.sort()
-    
-    if(operations == '6'):
-        break
-    elif(operations == '2'):
-        sentence = input('Directory to navigate to: ')
-        client.send(sentence.encode())
+    for j in range(len(ops)):
+        print("\n", end = "")
+        if(ops[j] == '1'):
+            modifiedSentence = client.recvfrom(2048)
+            print (modifiedSentence[0].decode(), end="")
+        elif(ops[j] == '2'):
+            sentence = input('Directory to navigate to: ')
+            client.send(sentence.encode())
+            
+            modifiedSentence = client.recvfrom(2048)
+            print (modifiedSentence[0].decode(), end="")
+        elif(ops[j] == '3'):
+            modifiedSentence = client.recvfrom(2048)
+            print (modifiedSentence[0].decode(), end="")
+        elif(ops[j] == '6'):
+            client.close()
+            break
 
-
-    i = 0
-    print("\n", end="")
-    for i in range(len(ops)):
-        modifiedSentence = client.recvfrom(2048)
-        print (modifiedSentence[0].decode(), end="")
-    
 client.close()

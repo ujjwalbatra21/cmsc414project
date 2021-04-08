@@ -18,9 +18,8 @@ while 1:
         end = 'false'
         
         operations = connection_socket.recv(2048).decode()
-        print ("Operations Recieved: " + operations)
+        print ("Cleaning disk " + operations)
         arr = operations.split()
-        arr.sort()
         i = 0
         for i in range(len(arr)):
             if(arr[i] == '1'):
